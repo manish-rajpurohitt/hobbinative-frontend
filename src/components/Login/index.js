@@ -4,11 +4,12 @@ import { TextField,Paper, Typography, Button} from "@mui/material";
 import useStyles from './styles.js';
 import swal from 'sweetalert';
 import api from '../api'
+import { useNavigate } from "react-router-dom";
 
 const Login =()=>{
     const classes = useStyles();
     
-    
+    const navigate = useNavigate();
     async function loginUser(credentials) {
         
          return api.post('/api/auth/login',credentials)
@@ -30,8 +31,8 @@ const Login =()=>{
        
           localStorage.setItem('token', response.data['token']);
           localStorage.setItem('user', JSON.stringify(response.data['user']));
-          
-       
+          navigate('/dashboard'); 
+         
       } else {
         console.log("Error");
       }
