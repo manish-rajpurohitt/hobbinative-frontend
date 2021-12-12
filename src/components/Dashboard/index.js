@@ -3,17 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import './index.css';
 import { Button } from "@mui/material";
-
-
-
-
-
-
-
+import api from '../api';
 const Dashboard = () =>{
 
    const [hobby,setHobby] = useState([]);
    const [location,setLocation] = useState([]);
+ 
+
    const hobbies = [
       { label: "Option 1", value: 0},
       { label: "Option 2", value: 2 },
@@ -37,6 +33,15 @@ const Dashboard = () =>{
    const user = JSON.parse(localStorage.getItem('user'));
    const token = localStorage.getItem('token');
    console.log(token);
+
+   const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+  
+  
+  api.get('/api/user/hobby/getAllHobbies',config)
+  .then(response=>console.log(response.data))
+  .catch(error=>console.log(error))
 
   
    const onChangeHobby = opt => {
