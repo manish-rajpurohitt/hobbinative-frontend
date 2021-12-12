@@ -1,0 +1,17 @@
+
+.nav-btn{
+    width: 115px;
+    height: 44px;
+    border: 0;
+    background: linear-gradient(89.5deg, #998BEF 2.96%, #DDDAF0 98.27%);
+    border-radius: 22px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 20px;
+    
+}
+
+.btn-txt{
+    font-size: 18px;
+    font-family: Cinizel-Bold;
+}
