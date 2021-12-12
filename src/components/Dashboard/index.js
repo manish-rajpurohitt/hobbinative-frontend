@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import './index.css';
+import { Button } from "@mui/material";
 
 
 
@@ -11,9 +12,18 @@ import './index.css';
 
 const Dashboard = () =>{
 
-   const [values,setValues] = useState([]);
-   const [checked,setChecked] = useState(false);
-   const options = [
+   const [hobby,setHobby] = useState([]);
+   const [location,setLocation] = useState([]);
+   const hobbies = [
+      { label: "Option 1", value: 0},
+      { label: "Option 2", value: 2 },
+      { label: "Option 3", value: 3 },
+      { label: "Option 4", value: 4 },
+      { label: "Option 5", value: 5 },
+      { label: "Option 6", value: 6 },
+      { label: "Option 7", value: 7 }
+    ];
+    const locations = [
       { label: "Option 1", value: 1 },
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
@@ -28,27 +38,20 @@ const Dashboard = () =>{
    const token = localStorage.getItem('token');
    console.log(token);
 
-  const onChangeCheckbox = e => {
-      const isChecked = !this.state.checked;
-      setChecked(isChecked)
-        if(isChecked)
-        setValues(options)
-        else
-        setValues(values)
-       
-    
-    };
-   const onChange = opt => {
-      const allOptionsSelected = opt.length === options.length;
-      
-      if(allOptionsSelected)
-      setChecked(true);
-      else
-      setChecked(false);
-       setValues(opt)
+  
+   const onChangeHobby = opt => {
+     
+       setHobby(opt)
         
       
     };
+
+    const onChangeLocation = loc => {
+     
+      setLocation(loc)
+       
+     
+   };
    
 
    const handleLogout=()=>{
@@ -69,19 +72,46 @@ const Dashboard = () =>{
                   <li><a href="#">DashBoard</a></li>
                 
                    <li><a href="#">Profile</a></li>
-                
+            
                      <div style={{
                         marginTop:25,
                         marginRight:10
                      }}>
+                        
                   <Select
-                  
+                  name="hobbies"
                   isMulti
-                  onChange={onChange}
-                  options={options}
-                  value={values}
+                  onChange={onChangeHobby}
+                  options={hobbies}
+                  value={hobby}
                   />
                   </div>
+
+                  <div style={{
+                        marginTop:25,
+                        marginRight:10
+                     }}>
+                  <Select
+                  name="location"
+                  isMulti
+                  onChange={onChangeLocation}
+                  options={locations}
+                  value={location}
+                  />
+                  </div>
+            <Button
+            variant="contained"
+            sx={{
+                height: 40,
+                width:90,
+                marginTop: 3,
+                marginRight:3
+            }}
+            size="large"
+            type="submit"
+            fullWidth
+            >Search</Button>
+              
       
          
              
